@@ -31,7 +31,11 @@ class Points2D {
     // Copy-constructor.
     Points2D(const Points2D &rhs) : size_{rhs.size_}
     {
-        sequence_ = new std::array<Object, 2>{*rhs.sequence_};
+        sequence_ = new std::array<Object, 2>[rhs.size_];
+        for(size_t i = 0; i < rhs.size_; ++i){
+            sequence_[i] = rhs.sequence[i];
+        }
+
     }
 
     // Copy-assignment. If you have already written
@@ -72,12 +76,15 @@ class Points2D {
     // End of big-five.
 
     // One parameter constructor.
-    explicit Points2D(const std::array<Object, 2>& item) {
-        // Provide code.
+    explicit Points2D(const std::array<Object, 2>& item) : size_{1}
+    {
+        sequence_ = new std::array<Object, 2>[1];
+        sequence_[0] = item;
+        
     }
 
     size_t size() const {
-        // Code missing.
+        return size_;
     }
 
     // @location: an index to a location in the sequence.
@@ -98,7 +105,10 @@ class Points2D {
 
     // Overloading the << operator.
     friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points) {
-        // Code missing.
+        for(size_t i = 0; i < some_points.size_; ++i){
+            out << "(" << some_points.sequence_[i][0] << ", " << some_points.sequence_[i][1] << ")\n";
+        }
+        return out;
     }
 
     // Overloading the >> operator.
