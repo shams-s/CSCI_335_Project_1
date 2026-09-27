@@ -1,6 +1,7 @@
 
 # Project 1
 
+My first project from my most recent DS&A class from the spring. Implementing the Big Five destructor, copy & move constructors, copy & move assignment operators. Also involved overloading the stream insertion and extraction operators, as well as addition and indexing.
 
 
 ## Information about the repository
