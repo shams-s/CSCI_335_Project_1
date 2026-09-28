@@ -12,6 +12,7 @@
 #include <cstddef>
 #include <string>
 #include <sstream>
+#include <cstdlib>
 
 namespace teaching_project {
 
@@ -91,7 +92,9 @@ class Points2D {
     // const version.
     // abort() if out-of-range.
     const std::array<Object, 2>& operator[](size_t location) const {
-        // Code missing.
+        if(location >= size_)
+            std::abort();
+        return sequence_[location];
     }
 
     //  @c1: A sequence.
