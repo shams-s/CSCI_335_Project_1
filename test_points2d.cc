@@ -19,7 +19,7 @@ void TestPart1() {
     Points2D<int> d{a_point2};  // A Points2D containing (7, 10) should be created.
     cout << d;  // Should just print (7, 10).
     cout << "Enter a sequence of points (integer)" << endl;
-    /* cin >> a; // User enters a set of points in the form:
+    cin >> a; // User enters a set of points in the form:
               // 3 7 4 3 2 1 10
               // The first 3 specifies number of points. Points are the triples
               // (7, 4), (3, 2), and (1, 10).
@@ -43,10 +43,10 @@ void TestPart1() {
     cout << "After a = move(e) " << endl;
     a = move(e);  // Move assignment operator for a.
     cout << a;
-    cout << e; */
+    cout << e;
 }
 
-/* void TestPart2() {
+void TestPart2() {
     Points2D<double> a, b;
     cout << "Enter a sequence of points (double)" << endl;
     cin >> a; // User provides input for Points2D a.
@@ -54,19 +54,19 @@ void TestPart1() {
     cout << "Enter a sequence of points (double)" << endl;
     cin >> b; // User provides input for Points2D b.
     cout << b << endl;
-    cout << "Result of a + b" << endl;
+    /* cout << "Result of a + b" << endl;
     cout << a + b << endl;
     Points2D<double> d = a + b;
     cout << "Result of d = a + b" << endl;
     cout << d;
     cout << "Second element in a: " << endl;
-    cout << a[1][0] << ", " << a[1][1] << endl;  // Should print the 2nd element.
-} */
+    cout << a[1][0] << ", " << a[1][1] << endl;  // Should print the 2nd element. */
+}
 
 } // namespace
 
 int main(int argc, char **argv) {
     TestPart1();
-    //TestPart2();
+    TestPart2();
     return 0;
 }

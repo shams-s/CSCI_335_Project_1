@@ -24,8 +24,7 @@ class Points2D {
 
     // Zero-parameter constructor.
     // Set size to 0.
-    Points2D()
-        :size_{0}, sequence_{nullptr}
+    Points2D() : sequence_{nullptr}, size_{0}
     {}
 
     // Copy-constructor.
@@ -33,7 +32,7 @@ class Points2D {
     {
         sequence_ = new std::array<Object, 2>[rhs.size_];
         for(size_t i = 0; i < rhs.size_; ++i){
-            sequence_[i] = rhs.sequence[i];
+            sequence_[i] = rhs.sequence_[i];
         }
 
     }
@@ -106,15 +105,24 @@ class Points2D {
     // Overloading the << operator.
     friend std::ostream &operator<<(std::ostream &out, const Points2D &some_points) {
         for(size_t i = 0; i < some_points.size_; ++i){
-            out << "(" << some_points.sequence_[i][0] << ", " << some_points.sequence_[i][1] << ")\n";
+            out << "(" << some_points.sequence_[i][0] << ", " << some_points.sequence_[i][1] << ") ";
         }
+        out << "\n";
         return out;
     }
 
     // Overloading the >> operator.
     // Read a chain from an input stream (e.g., standard input).
-    friend std::istream &operator>>(std::istream &in, Points2D &some_points) {
-        // Code missing.
+    // in this case in is cin aka the input line and some_points is the Points2D object that is being populated with points
+    // the loop here goes point by point in some_points' sequence_ and populates each point with 2 values for the x and y coords
+    friend std::istream &operator>>(std::istream &in, Points2D &some_points) {  
+        delete[] some_points.sequence_;                                         
+        in >> some_points.size_;
+        some_points.sequence_ = new std::array<Object, 2>[some_points.size_];
+        for(size_t i = 0; i < some_points.size_; ++i){
+            in >> some_points.sequence_[i][0] >> some_points.sequence_[i][1];
+        }
+        return in;
     }
 
   private:
