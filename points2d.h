@@ -13,6 +13,7 @@
 #include <string>
 #include <sstream>
 #include <cstdlib>
+#include <algorithm>
 
 namespace teaching_project {
 
@@ -102,7 +103,26 @@ class Points2D {
     //  @return their sum. If the sequences are not of the same size, append the
     //    result with the remaining part of the larger sequence.
     friend Points2D operator+(const Points2D &c1, const Points2D &c2) {
-        // Code missing.
+        Points2D result;
+        result.size_  = std::max(c1.size_, c2.size_);
+        result.sequence_ = new std::array<Object, 2>[result.size_];
+        for(size_t i = 0; i < result.size_; ++i){
+            if(i < c1.size_ && i < c2.size_){
+                result.sequence_[i][0] = c1.sequence_[i][0] + c2.sequence_[i][0];
+                result.sequence_[i][1] = c1.sequence_[i][1] + c2.sequence_[i][1];
+            }
+            //c1 is the smaller of the two >= used here because size is going to be 1-indexed while i is 0-indexed
+            else if(i >= c1.size_ && i < c2.size_){  
+                result.sequence_[i][0] = c2.sequence_[i][0];
+                result.sequence_[i][1] = c2.sequence_[i][1];
+            }
+            else{   //c2 is the smaller of the two
+                result.sequence_[i][0] = c1.sequence_[i][0];
+                result.sequence_[i][1] = c1.sequence_[i][1];
+            }
+            
+        }
+        return result;
     }
 
     // Overloading the << operator.
